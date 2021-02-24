@@ -40,3 +40,5 @@ target/classes/static/js/main.js
 target/classes/static/js/test.js
 target/classes/templates/admin.html
 target/classes/templates/test.html
+/target/
+/.idea/
