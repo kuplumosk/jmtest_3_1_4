@@ -1,9 +1,9 @@
 package com.kuplumosk.rest.controllers;
 
-
 import com.kuplumosk.rest.entitys.User;
 import com.kuplumosk.rest.services.UserServiceImpl;
 import java.util.List;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
-
-    //test
 
     private final UserServiceImpl userServiceImpl;
 
@@ -38,13 +36,15 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public void addNewUser(@RequestBody User user) {
+    public User addNewUser(@RequestBody User user) {
         userServiceImpl.addUser(user);
+        return user;
     }
 
     @PutMapping("/users")
-    public void updateUser(@RequestBody User user) {
+    public User updateUser(@RequestBody User user) {
         userServiceImpl.updateUser(user);
+        return user;
     }
 
     @DeleteMapping("/users/{id}")

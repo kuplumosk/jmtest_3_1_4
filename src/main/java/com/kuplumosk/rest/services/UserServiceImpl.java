@@ -58,16 +58,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public void updateUser(User user) {
-        String newPass;
-        if (passwordEncoder.matches(user.getPassword(),
-            userRepository.getOne(user.getId()).getPassword())) {
-            newPass = userRepository.getOne(user.getId()).getPassword();
-        } else if (user.getPassword().equals("")) {
-            newPass = userRepository.getOne(user.getId()).getPassword();
-        } else {
-            newPass = passwordEncoder.encode(user.getPassword());
+        if (!user.getPassword().equals(userRepository.getOne(user.getId()).getPassword())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        user.setPassword(newPass);
         userRepository.saveAndFlush(user);
     }
 

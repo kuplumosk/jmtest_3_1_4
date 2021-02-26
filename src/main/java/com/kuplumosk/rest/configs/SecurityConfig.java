@@ -37,15 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
             .successHandler(loginSuccessHandler);
 
-
-//        http
-//            .authorizeRequests()
-//            .antMatchers("/").permitAll()
-//            .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-//            .antMatchers("/admin").hasRole("ADMIN")
-//            .antMatchers("/**").hasRole("ADMIN")
-//            .antMatchers("/webjars").permitAll()
-//            .antMatchers("/resources").permitAll();
+        http
+            .authorizeRequests()
+            .antMatchers("/").permitAll()
+            .antMatchers("/user").hasAnyRole("USER", "ADMIN")
+            .antMatchers("/admin").hasRole("ADMIN")
+            .antMatchers("/**").hasRole("ADMIN")
+            .antMatchers("/webjars").permitAll()
+            .antMatchers("/resources").permitAll();
 
         http.logout()
             .permitAll()
@@ -59,9 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/home")
             .hasRole("ADMIN")
             .antMatchers("/api/product/*")
-            .hasRole("ADMIN")
-            .and()
-            .formLogin();
+            .hasRole("ADMIN");
+
     }
 
     @Override
