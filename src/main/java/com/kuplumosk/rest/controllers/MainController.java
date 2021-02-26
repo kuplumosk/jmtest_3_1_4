@@ -2,6 +2,7 @@ package com.kuplumosk.rest.controllers;
 
 import com.kuplumosk.rest.entitys.User;
 import com.kuplumosk.rest.services.UserServiceImpl;
+import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,19 +20,20 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String login() {
+    public String index() {
         return "login";
     }
 
-    @GetMapping("/login")
-    public String login2() {
-        return "login";
+    @GetMapping("/user")
+    public String showUserPage(Model model, Principal principal) {
+        model.addAttribute("user", userServiceImpl.findByUsername(principal.getName()));
+        return "user";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/admin")
     public String showUserList(@ModelAttribute("user") User user, Model model) {
         model.addAttribute("allUsers", userServiceImpl.findAllUsers());
         model.addAttribute("allRoles", userServiceImpl.findAllRoles());
-        return "index";
+        return "admin";
     }
 }
