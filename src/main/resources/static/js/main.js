@@ -79,7 +79,7 @@ $(document).ready(function () {
                 document.getElementById('formLastName').value = `${user.lastName}`;
                 document.getElementById('formAge').value = `${user.age}`;
                 document.getElementById('formEmail').value = `${user.username}`;
-                document.getElementById('formPassword').value = `${user.password}`;
+                document.getElementById('formPassword').value = ``;
             })
             $('#exampleModal').modal('show');
         }
@@ -168,8 +168,8 @@ $(document).ready(function () {
         $('#usersTable').append(row);
     }
 
-    $('.nav-item .nav-link').click(function () {
-        $('.nav-link').addClass('text-primary');
+    $('.tabb').click(function () {
+        $('.tabb').addClass('text-primary');
         $(this).removeClass('text-primary');
     });
 })
